@@ -41,8 +41,8 @@ class MLP():
         self.item_id = tf.placeholder(dtype=tf.int32, shape=[None], name='item_id')
         self.y = tf.placeholder(dtype=tf.float32, shape=[None], name='y')
 
-        self.mlp_P = tf.Variable(tf.random_normal([self.num_user, num_factor_mlp]), dtype=tf.float32)
-        self.mlp_Q = tf.Variable(tf.random_normal([self.num_item, num_factor_mlp]), dtype=tf.float32)
+        self.mlp_P = tf.Variable(tf.random_normal([self.num_user, num_factor_mlp], stddev=0.001), dtype=tf.float32)
+        self.mlp_Q = tf.Variable(tf.random_normal([self.num_item, num_factor_mlp], stddev=0.001), dtype=tf.float32)
 
         mlp_user_latent_factor = tf.nn.embedding_lookup(self.mlp_P, self.user_id)
         mlp_item_latent_factor = tf.nn.embedding_lookup(self.mlp_Q, self.item_id)
